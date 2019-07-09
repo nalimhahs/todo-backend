@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,11 +25,12 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
+#CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -155,3 +156,6 @@ if DEBUG != 'True':
             'rest_framework.renderers.JSONRenderer',
         )
     })
+
+
+django_heroku.settings(locals())
